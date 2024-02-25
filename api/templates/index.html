@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile Microservice</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+        }
+
+        #userProfile {
+            margin-top: 20px;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>User Profile Microservice</h1>
+
+    <label for="userId">User ID:</label>
+    <input type="text" id="userId" placeholder="Enter User ID">
+    <button onclick="getUserProfile()">Get User Profile</button>
+
+    <div id="userProfile"></div>
+    <div id="errorMessage" class="error-message"></div>
+
+    <script src="your-script-file.js"></script>
+</body>
+</html>
+
