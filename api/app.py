@@ -32,7 +32,6 @@ def index():
 
     return render_template('index.html', users=data)
 
-
 # # Initialize Supabase client
 # url = os.environ.get("supabase_url")
 # key = os.environ.get("supabase_key")
