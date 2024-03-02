@@ -22,6 +22,7 @@ supabase = create_client(url, key)
 #         return {"error": str(error)}, 500
 #     return jsonify({'data': data})
 
+
 @app.route('/')
 def index():
     response = supabase.table('users').select('*').execute()
@@ -68,6 +69,7 @@ def index():
 #         return jsonify({"username": user.get("username", "N/A")})
 #     else:
 #         return jsonify({"error": "User not found"}), 404
-    
+
+
 if __name__ == '__main__':
-    app.run(debug=True)   
+    app.run(debug=True)
