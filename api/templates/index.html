@@ -39,7 +39,7 @@
         }
     </style>
 </head>
-<body>
+<!-- <body>
     <h1>User Profile Microservice</h1>
 
     <label for="userId">User ID:</label>
@@ -50,6 +50,25 @@
     <div id="errorMessage" class="error-message"></div>
 
     <script src="your-script-file.js"></script>
+</body> -->
+<body>
+    <h1>Users</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Created At</th>
+            <th>Username</th>
+            <th>Session Token</th>
+        </tr>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.created_at }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.session_token or 'No token' }}</td>
+            </tr>
+        {% endfor %}
+    </table>
 </body>
 </html>
 
