@@ -1,6 +1,7 @@
 import unittest
 import requests
 
+
 class TestUserProfileAPI(unittest.TestCase):
     base_url = "http://127.0.0.1:5000/user"
 
@@ -32,6 +33,7 @@ class TestUserProfileAPI(unittest.TestCase):
         response = requests.get(f"{self.base_url}/nonexistent_user")
 
         self.assertEqual(response.status_code, 404)
+
 
 if __name__ == '__main__':
     unittest.main()
