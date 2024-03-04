@@ -1924,3 +1924,303 @@ azure.servicebus.exceptions.ServiceBusConnectionError: The link 'G32:190845776:2
 2024-03-04 13:46:50,192:INFO - Link state changed: <LinkState.ATTACH_SENT: 1> -> <LinkState.ATTACHED: 3>
 2024-03-04 13:46:50,399:INFO - Link state changed: <LinkState.DETACHED: 0> -> <LinkState.ATTACH_SENT: 1>
 2024-03-04 13:46:50,413:INFO - Link state changed: <LinkState.ATTACH_SENT: 1> -> <LinkState.ATTACHED: 3>
+2024-03-04 14:31:17,171:INFO - AMQP error occurred: (AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')), condition: (<ErrorCondition.SocketError: b'amqp:socket-error'>), description: ('Can not read frame due to exception: Server unexpectedly closed connection').
+2024-03-04 14:31:17,175:INFO - An error occurred when detaching the link: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:17,211:INFO - Link state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:17,211:INFO - An error occurred when detaching the link: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:17,211:INFO - Link state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:17,212:INFO - Management link receiver state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:17,212:INFO - An error occurred when detaching the link: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:17,212:INFO - Link state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:17,212:INFO - Management link sender state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:17,212:INFO - An error occurred when ending the session: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:17,212:INFO - Session state changed: <SessionState.MAPPED: 3> -> <SessionState.UNMAPPED: 0>
+2024-03-04 14:31:17,212:INFO - An error occurred when closing the connection: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:17,212:INFO - Connection state changed: <ConnectionState.OPENED: 9> -> <ConnectionState.END: 13>
+2024-03-04 14:31:17,648:INFO - 'servicebus.pysdk-9592f3d5' operation has exhausted retry. Last exception: ServiceBusConnectionError('Can not read frame due to exception: Server unexpectedly closed connection Error condition: amqp:socket-error.').
+Starting to listen for Service Bus messages...
+Traceback (most recent call last):
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/SSE-Project-II/api/service_bus_listener.py", line 39, in <module>
+    process_service_bus_messages()
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/SSE-Project-II/api/service_bus_listener.py", line 26, in process_service_bus_messages
+    for msg in receiver:
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/SSE-Project-II/venv/lib/python3.10/site-packages/azure/servicebus/_transport/_pyamqp_transport.py", line 630, in iter_contextual_wrapper
+    message = receiver._inner_next(wait_time=max_wait_time)
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/SSE-Project-II/venv/lib/python3.10/site-packages/azure/servicebus/_servicebus_receiver.py", line 251, in _inner_next
+    return self._do_retryable_operation(self._iter_next, wait_time=wait_time)
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/SSE-Project-II/venv/lib/python3.10/site-packages/azure/servicebus/_base_handler.py", line 438, in _do_retryable_operation
+    raise last_exception from None
+azure.servicebus.exceptions.ServiceBusConnectionError: Can not read frame due to exception: Server unexpectedly closed connection Error condition: amqp:socket-error.
+2024-03-04 14:31:19,311:INFO - AMQP error occurred: (AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')), condition: (<ErrorCondition.SocketError: b'amqp:socket-error'>), description: ('Can not read frame due to exception: Server unexpectedly closed connection').
+2024-03-04 14:31:19,314:INFO - An error occurred when detaching the link: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:19,315:INFO - Link state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:19,315:INFO - An error occurred when detaching the link: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:19,315:INFO - Link state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:19,316:INFO - Management link receiver state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:19,316:INFO - An error occurred when detaching the link: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:19,316:INFO - Link state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:19,316:INFO - Management link sender state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:19,316:INFO - An error occurred when ending the session: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:19,316:INFO - Session state changed: <SessionState.MAPPED: 3> -> <SessionState.UNMAPPED: 0>
+2024-03-04 14:31:19,316:INFO - An error occurred when closing the connection: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:19,316:INFO - Connection state changed: <ConnectionState.OPENED: 9> -> <ConnectionState.END: 13>
+2024-03-04 14:31:19,699:INFO - 'servicebus.pysdk-0f5fe326' operation has exhausted retry. Last exception: ServiceBusConnectionError('Can not read frame due to exception: Server unexpectedly closed connection Error condition: amqp:socket-error.').
+Starting to listen for Service Bus messages...
+Error processing message: Expecting value: line 1 column 1 (char 0)
+Error processing message: Expecting value: line 1 column 1 (char 0)
+Traceback (most recent call last):
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/SSE-Project-II/api/service_bus_listener.py", line 40, in <module>
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/SSE-Project-II/api/service_bus_listener.py", line 26, in process_service_bus_messages
+    for msg in receiver:
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/MicroservicesTrialCode/NetflixRegion/venv/lib/python3.10/site-packages/azure/servicebus/_transport/_pyamqp_transport.py", line 630, in iter_contextual_wrapper
+    message = receiver._inner_next(wait_time=max_wait_time)
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/MicroservicesTrialCode/NetflixRegion/venv/lib/python3.10/site-packages/azure/servicebus/_servicebus_receiver.py", line 251, in _inner_next
+    return self._do_retryable_operation(self._iter_next, wait_time=wait_time)
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/MicroservicesTrialCode/NetflixRegion/venv/lib/python3.10/site-packages/azure/servicebus/_base_handler.py", line 438, in _do_retryable_operation
+    raise last_exception from None
+azure.servicebus.exceptions.ServiceBusConnectionError: Can not read frame due to exception: Server unexpectedly closed connection Error condition: amqp:socket-error.
+2024-03-04 14:31:25,857:INFO - AMQP error occurred: (AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')), condition: (<ErrorCondition.SocketError: b'amqp:socket-error'>), description: ('Can not read frame due to exception: Server unexpectedly closed connection').
+2024-03-04 14:31:25,860:INFO - An error occurred when detaching the link: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:25,861:INFO - Link state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:25,861:INFO - An error occurred when detaching the link: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:25,861:INFO - Link state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:25,861:INFO - Management link receiver state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:25,862:INFO - An error occurred when detaching the link: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:25,862:INFO - Link state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:25,862:INFO - Management link sender state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:25,863:INFO - An error occurred when ending the session: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:25,864:INFO - Session state changed: <SessionState.MAPPED: 3> -> <SessionState.UNMAPPED: 0>
+2024-03-04 14:31:25,864:INFO - An error occurred when closing the connection: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:25,864:INFO - Connection state changed: <ConnectionState.OPENED: 9> -> <ConnectionState.END: 13>
+2024-03-04 14:31:26,771:INFO - AMQP error occurred: (AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')), condition: (<ErrorCondition.SocketError: b'amqp:socket-error'>), description: ('Can not read frame due to exception: Server unexpectedly closed connection').
+2024-03-04 14:31:26,773:INFO - An error occurred when detaching the link: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:26,814:INFO - Link state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:26,814:INFO - An error occurred when detaching the link: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:26,814:INFO - Link state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:26,814:INFO - Management link receiver state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:26,814:INFO - An error occurred when detaching the link: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:26,814:INFO - Link state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:26,814:INFO - Management link sender state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:26,814:INFO - An error occurred when ending the session: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:26,814:INFO - Session state changed: <SessionState.MAPPED: 3> -> <SessionState.UNMAPPED: 0>
+2024-03-04 14:31:26,814:INFO - An error occurred when closing the connection: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:26,814:INFO - Connection state changed: <ConnectionState.OPENED: 9> -> <ConnectionState.END: 13>
+2024-03-04 14:31:27,514:INFO - 'servicebus.pysdk-6bb17407' operation has exhausted retry. Last exception: ServiceBusConnectionError('Can not read frame due to exception: Server unexpectedly closed connection Error condition: amqp:socket-error.').
+Starting to listen for Service Bus messages...
+Traceback (most recent call last):
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/SSE-Project-II/api/service_bus_listener.py", line 40, in <module>
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/SSE-Project-II/api/service_bus_listener.py", line 26, in process_service_bus_messages
+    for msg in receiver:
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/SSE-Project-II/venv/lib/python3.10/site-packages/azure/servicebus/_transport/_pyamqp_transport.py", line 630, in iter_contextual_wrapper
+    message = receiver._inner_next(wait_time=max_wait_time)
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/SSE-Project-II/venv/lib/python3.10/site-packages/azure/servicebus/_servicebus_receiver.py", line 251, in _inner_next
+    return self._do_retryable_operation(self._iter_next, wait_time=wait_time)
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/SSE-Project-II/venv/lib/python3.10/site-packages/azure/servicebus/_base_handler.py", line 438, in _do_retryable_operation
+    raise last_exception from None
+azure.servicebus.exceptions.ServiceBusConnectionError: Can not read frame due to exception: Server unexpectedly closed connection Error condition: amqp:socket-error.
+2024-03-04 14:31:29,333:INFO - 'servicebus.pysdk-e5585fcc' has an exception (ServiceBusConnectionError('Can not read frame due to exception: Server unexpectedly closed connection Error condition: amqp:socket-error.')). Retrying...
+2024-03-04 14:31:29,635:INFO - Connection state changed: None -> <ConnectionState.START: 0>
+2024-03-04 14:31:29,652:INFO - Connection state changed: <ConnectionState.START: 0> -> <ConnectionState.HDR_SENT: 2>
+2024-03-04 14:31:29,653:INFO - Connection state changed: <ConnectionState.HDR_SENT: 2> -> <ConnectionState.HDR_SENT: 2>
+2024-03-04 14:31:29,653:INFO - Connection state changed: <ConnectionState.HDR_SENT: 2> -> <ConnectionState.OPEN_PIPE: 4>
+2024-03-04 14:31:29,654:INFO - Session state changed: <SessionState.UNMAPPED: 0> -> <SessionState.BEGIN_SENT: 1>
+2024-03-04 14:31:29,655:INFO - Link state changed: <LinkState.DETACHED: 0> -> <LinkState.ATTACH_SENT: 1>
+2024-03-04 14:31:29,655:INFO - Management link receiver state changed: <LinkState.DETACHED: 0> -> <LinkState.ATTACH_SENT: 1>
+2024-03-04 14:31:29,656:INFO - Link state changed: <LinkState.DETACHED: 0> -> <LinkState.ATTACH_SENT: 1>
+2024-03-04 14:31:29,656:INFO - Management link sender state changed: <LinkState.DETACHED: 0> -> <LinkState.ATTACH_SENT: 1>
+2024-03-04 14:31:29,662:INFO - Connection state changed: <ConnectionState.OPEN_PIPE: 4> -> <ConnectionState.OPEN_SENT: 7>
+2024-03-04 14:31:29,714:INFO - Connection state changed: <ConnectionState.OPEN_SENT: 7> -> <ConnectionState.OPENED: 9>
+2024-03-04 14:31:29,766:INFO - Session state changed: <SessionState.BEGIN_SENT: 1> -> <SessionState.MAPPED: 3>
+2024-03-04 14:31:29,819:INFO - Link state changed: <LinkState.ATTACH_SENT: 1> -> <LinkState.ATTACHED: 3>
+2024-03-04 14:31:29,819:INFO - Management link receiver state changed: <LinkState.ATTACH_SENT: 1> -> <LinkState.ATTACHED: 3>
+2024-03-04 14:31:29,873:INFO - Link state changed: <LinkState.ATTACH_SENT: 1> -> <LinkState.ATTACHED: 3>
+2024-03-04 14:31:29,873:INFO - Management link sender state changed: <LinkState.ATTACH_SENT: 1> -> <LinkState.ATTACHED: 3>
+2024-03-04 14:31:30,189:INFO - Link state changed: <LinkState.DETACHED: 0> -> <LinkState.ATTACH_SENT: 1>
+2024-03-04 14:31:30,198:INFO - Link state changed: <LinkState.ATTACH_SENT: 1> -> <LinkState.ATTACHED: 3>
+2024-03-04 14:31:32,904:INFO - AMQP error occurred: (AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')), condition: (<ErrorCondition.SocketError: b'amqp:socket-error'>), description: ('Can not read frame due to exception: Server unexpectedly closed connection').
+2024-03-04 14:31:32,906:INFO - An error occurred when detaching the link: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:32,908:INFO - Link state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:32,908:INFO - An error occurred when detaching the link: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:32,908:INFO - Link state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:32,908:INFO - Management link receiver state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:32,909:INFO - An error occurred when detaching the link: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:32,909:INFO - Link state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:32,909:INFO - Management link sender state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:32,909:INFO - An error occurred when ending the session: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:32,909:INFO - Session state changed: <SessionState.MAPPED: 3> -> <SessionState.UNMAPPED: 0>
+2024-03-04 14:31:32,909:INFO - An error occurred when closing the connection: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:32,909:INFO - Connection state changed: <ConnectionState.OPENED: 9> -> <ConnectionState.END: 13>
+2024-03-04 14:31:33,139:INFO - 'servicebus.pysdk-4adb9545' operation has exhausted retry. Last exception: ServiceBusConnectionError('Can not read frame due to exception: Server unexpectedly closed connection Error condition: amqp:socket-error.').
+Starting to listen for Service Bus messages...
+Error processing message: Expecting value: line 1 column 1 (char 0)
+Traceback (most recent call last):
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/SSE-Project-II/api/service_bus_listener.py", line 40, in <module>
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/SSE-Project-II/api/service_bus_listener.py", line 26, in process_service_bus_messages
+    for msg in receiver:
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/MicroservicesTrialCode/NetflixRegion/venv/lib/python3.10/site-packages/azure/servicebus/_transport/_pyamqp_transport.py", line 630, in iter_contextual_wrapper
+    message = receiver._inner_next(wait_time=max_wait_time)
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/MicroservicesTrialCode/NetflixRegion/venv/lib/python3.10/site-packages/azure/servicebus/_servicebus_receiver.py", line 251, in _inner_next
+    return self._do_retryable_operation(self._iter_next, wait_time=wait_time)
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/MicroservicesTrialCode/NetflixRegion/venv/lib/python3.10/site-packages/azure/servicebus/_base_handler.py", line 438, in _do_retryable_operation
+    raise last_exception from None
+azure.servicebus.exceptions.ServiceBusConnectionError: Can not read frame due to exception: Server unexpectedly closed connection Error condition: amqp:socket-error.
+2024-03-04 14:31:37,158:INFO - AMQP error occurred: (AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')), condition: (<ErrorCondition.SocketError: b'amqp:socket-error'>), description: ('Can not read frame due to exception: Server unexpectedly closed connection').
+2024-03-04 14:31:37,162:INFO - An error occurred when detaching the link: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:37,163:INFO - Link state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:37,164:INFO - An error occurred when detaching the link: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:37,164:INFO - Link state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:37,164:INFO - Management link receiver state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:37,164:INFO - An error occurred when detaching the link: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:37,164:INFO - Link state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:37,164:INFO - Management link sender state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:37,164:INFO - An error occurred when ending the session: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:37,164:INFO - Session state changed: <SessionState.MAPPED: 3> -> <SessionState.UNMAPPED: 0>
+2024-03-04 14:31:37,164:INFO - An error occurred when closing the connection: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:37,164:INFO - Connection state changed: <ConnectionState.OPENED: 9> -> <ConnectionState.END: 13>
+2024-03-04 14:31:37,981:INFO - 'servicebus.pysdk-37cbd4c5' operation has exhausted retry. Last exception: ServiceBusConnectionError('Can not read frame due to exception: Server unexpectedly closed connection Error condition: amqp:socket-error.').
+Starting to listen for Service Bus messages...
+Error processing message: Expecting value: line 1 column 1 (char 0)
+Traceback (most recent call last):
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/SSE-Project-II/api/service_bus_listener.py", line 40, in <module>
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/SSE-Project-II/api/service_bus_listener.py", line 26, in process_service_bus_messages
+    for msg in receiver:
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/MicroservicesTrialCode/NetflixRegion/venv/lib/python3.10/site-packages/azure/servicebus/_transport/_pyamqp_transport.py", line 630, in iter_contextual_wrapper
+    message = receiver._inner_next(wait_time=max_wait_time)
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/MicroservicesTrialCode/NetflixRegion/venv/lib/python3.10/site-packages/azure/servicebus/_servicebus_receiver.py", line 251, in _inner_next
+    return self._do_retryable_operation(self._iter_next, wait_time=wait_time)
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/MicroservicesTrialCode/NetflixRegion/venv/lib/python3.10/site-packages/azure/servicebus/_base_handler.py", line 438, in _do_retryable_operation
+    raise last_exception from None
+azure.servicebus.exceptions.ServiceBusConnectionError: Can not read frame due to exception: Server unexpectedly closed connection Error condition: amqp:socket-error.
+2024-03-04 14:31:46,011:INFO - AMQP error occurred: (AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')), condition: (<ErrorCondition.SocketError: b'amqp:socket-error'>), description: ('Can not read frame due to exception: Server unexpectedly closed connection').
+2024-03-04 14:31:46,014:INFO - An error occurred when detaching the link: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:46,015:INFO - Link state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:46,015:INFO - An error occurred when detaching the link: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:46,015:INFO - Link state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:46,015:INFO - Management link receiver state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:46,016:INFO - An error occurred when detaching the link: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:46,016:INFO - Link state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:46,017:INFO - Management link sender state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:46,017:INFO - An error occurred when ending the session: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:46,017:INFO - Session state changed: <SessionState.MAPPED: 3> -> <SessionState.UNMAPPED: 0>
+2024-03-04 14:31:46,017:INFO - An error occurred when closing the connection: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:46,017:INFO - Connection state changed: <ConnectionState.OPENED: 9> -> <ConnectionState.END: 13>
+2024-03-04 14:31:46,458:INFO - 'servicebus.pysdk-8f441030' operation has exhausted retry. Last exception: ServiceBusConnectionError('Can not read frame due to exception: Server unexpectedly closed connection Error condition: amqp:socket-error.').
+Starting to listen for Service Bus messages...
+Error processing message: Expecting value: line 1 column 1 (char 0)
+Traceback (most recent call last):
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/SSE-Project-II/api/service_bus_listener.py", line 40, in <module>
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/SSE-Project-II/api/service_bus_listener.py", line 26, in process_service_bus_messages
+    for msg in receiver:
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/MicroservicesTrialCode/NetflixRegion/venv/lib/python3.10/site-packages/azure/servicebus/_transport/_pyamqp_transport.py", line 630, in iter_contextual_wrapper
+    message = receiver._inner_next(wait_time=max_wait_time)
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/MicroservicesTrialCode/NetflixRegion/venv/lib/python3.10/site-packages/azure/servicebus/_servicebus_receiver.py", line 251, in _inner_next
+    return self._do_retryable_operation(self._iter_next, wait_time=wait_time)
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/MicroservicesTrialCode/NetflixRegion/venv/lib/python3.10/site-packages/azure/servicebus/_base_handler.py", line 438, in _do_retryable_operation
+    raise last_exception from None
+azure.servicebus.exceptions.ServiceBusConnectionError: Can not read frame due to exception: Server unexpectedly closed connection Error condition: amqp:socket-error.
+2024-03-04 14:31:49,453:INFO - AMQP error occurred: (AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')), condition: (<ErrorCondition.SocketError: b'amqp:socket-error'>), description: ('Can not read frame due to exception: Server unexpectedly closed connection').
+2024-03-04 14:31:49,456:INFO - An error occurred when detaching the link: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:49,458:INFO - Link state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:49,458:INFO - An error occurred when detaching the link: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:49,458:INFO - Link state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:49,458:INFO - Management link receiver state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:49,459:INFO - An error occurred when detaching the link: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:49,459:INFO - Link state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:49,459:INFO - Management link sender state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:49,459:INFO - An error occurred when ending the session: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:49,459:INFO - Session state changed: <SessionState.MAPPED: 3> -> <SessionState.UNMAPPED: 0>
+2024-03-04 14:31:49,459:INFO - An error occurred when closing the connection: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:49,459:INFO - Connection state changed: <ConnectionState.OPENED: 9> -> <ConnectionState.END: 13>
+2024-03-04 14:31:50,279:INFO - 'servicebus.pysdk-936c38ff' operation has exhausted retry. Last exception: ServiceBusConnectionError('Can not read frame due to exception: Server unexpectedly closed connection Error condition: amqp:socket-error.').
+Starting to listen for Service Bus messages...
+Error processing message: Expecting value: line 1 column 1 (char 0)
+Traceback (most recent call last):
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/SSE-Project-II/api/service_bus_listener.py", line 40, in <module>
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/SSE-Project-II/api/service_bus_listener.py", line 26, in process_service_bus_messages
+    for msg in receiver:
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/MicroservicesTrialCode/NetflixRegion/venv/lib/python3.10/site-packages/azure/servicebus/_transport/_pyamqp_transport.py", line 630, in iter_contextual_wrapper
+    message = receiver._inner_next(wait_time=max_wait_time)
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/MicroservicesTrialCode/NetflixRegion/venv/lib/python3.10/site-packages/azure/servicebus/_servicebus_receiver.py", line 251, in _inner_next
+    return self._do_retryable_operation(self._iter_next, wait_time=wait_time)
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/MicroservicesTrialCode/NetflixRegion/venv/lib/python3.10/site-packages/azure/servicebus/_base_handler.py", line 438, in _do_retryable_operation
+    raise last_exception from None
+azure.servicebus.exceptions.ServiceBusConnectionError: Can not read frame due to exception: Server unexpectedly closed connection Error condition: amqp:socket-error.
+2024-03-04 14:31:59,947:INFO - AMQP error occurred: (AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')), condition: (<ErrorCondition.SocketError: b'amqp:socket-error'>), description: ('Can not read frame due to exception: Server unexpectedly closed connection').
+2024-03-04 14:31:59,949:INFO - An error occurred when detaching the link: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:59,950:INFO - Link state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:59,950:INFO - An error occurred when detaching the link: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:59,950:INFO - Link state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:59,950:INFO - Management link receiver state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:59,951:INFO - An error occurred when detaching the link: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:59,951:INFO - Link state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:59,951:INFO - Management link sender state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:31:59,951:INFO - An error occurred when ending the session: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:59,951:INFO - Session state changed: <SessionState.MAPPED: 3> -> <SessionState.UNMAPPED: 0>
+2024-03-04 14:31:59,951:INFO - An error occurred when closing the connection: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:31:59,951:INFO - Connection state changed: <ConnectionState.OPENED: 9> -> <ConnectionState.END: 13>
+2024-03-04 14:32:00,728:INFO - 'servicebus.pysdk-faf327b2' operation has exhausted retry. Last exception: ServiceBusConnectionError('Can not read frame due to exception: Server unexpectedly closed connection Error condition: amqp:socket-error.').
+Starting to listen for Service Bus messages...
+Error processing message: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+Traceback (most recent call last):
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/SSE-Project-II/api/service_bus_listener.py", line 40, in <module>
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/SSE-Project-II/api/service_bus_listener.py", line 26, in process_service_bus_messages
+    for msg in receiver:
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/MicroservicesTrialCode/NetflixRegion/venv/lib/python3.10/site-packages/azure/servicebus/_transport/_pyamqp_transport.py", line 630, in iter_contextual_wrapper
+    message = receiver._inner_next(wait_time=max_wait_time)
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/MicroservicesTrialCode/NetflixRegion/venv/lib/python3.10/site-packages/azure/servicebus/_servicebus_receiver.py", line 251, in _inner_next
+    return self._do_retryable_operation(self._iter_next, wait_time=wait_time)
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/MicroservicesTrialCode/NetflixRegion/venv/lib/python3.10/site-packages/azure/servicebus/_base_handler.py", line 438, in _do_retryable_operation
+    raise last_exception from None
+azure.servicebus.exceptions.ServiceBusConnectionError: Can not read frame due to exception: Server unexpectedly closed connection Error condition: amqp:socket-error.
+2024-03-04 14:32:02,806:INFO - AMQP error occurred: (AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')), condition: (<ErrorCondition.SocketError: b'amqp:socket-error'>), description: ('Can not read frame due to exception: Server unexpectedly closed connection').
+2024-03-04 14:32:02,809:INFO - An error occurred when detaching the link: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:32:02,841:INFO - Link state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:32:02,841:INFO - An error occurred when detaching the link: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:32:02,841:INFO - Link state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:32:02,841:INFO - Management link receiver state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:32:02,841:INFO - An error occurred when detaching the link: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:32:02,841:INFO - Link state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:32:02,841:INFO - Management link sender state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:32:02,841:INFO - An error occurred when ending the session: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:32:02,841:INFO - Session state changed: <SessionState.MAPPED: 3> -> <SessionState.UNMAPPED: 0>
+2024-03-04 14:32:02,842:INFO - An error occurred when closing the connection: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:32:02,842:INFO - Connection state changed: <ConnectionState.OPENED: 9> -> <ConnectionState.END: 13>
+2024-03-04 14:32:03,747:INFO - 'servicebus.pysdk-591cf198' operation has exhausted retry. Last exception: ServiceBusConnectionError('Can not read frame due to exception: Server unexpectedly closed connection Error condition: amqp:socket-error.').
+Starting to listen for Service Bus messages...
+Traceback (most recent call last):
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/SSE-Project-II/api/service_bus_listener.py", line 40, in <module>
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/SSE-Project-II/api/service_bus_listener.py", line 26, in process_service_bus_messages
+    for msg in receiver:
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/SSE-Project-II/venv/lib/python3.10/site-packages/azure/servicebus/_transport/_pyamqp_transport.py", line 630, in iter_contextual_wrapper
+    message = receiver._inner_next(wait_time=max_wait_time)
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/SSE-Project-II/venv/lib/python3.10/site-packages/azure/servicebus/_servicebus_receiver.py", line 251, in _inner_next
+    return self._do_retryable_operation(self._iter_next, wait_time=wait_time)
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/SSE-Project-II/venv/lib/python3.10/site-packages/azure/servicebus/_base_handler.py", line 438, in _do_retryable_operation
+    raise last_exception from None
+azure.servicebus.exceptions.ServiceBusConnectionError: Can not read frame due to exception: Server unexpectedly closed connection Error condition: amqp:socket-error.
+2024-03-04 14:32:04,785:INFO - AMQP error occurred: (AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')), condition: (<ErrorCondition.SocketError: b'amqp:socket-error'>), description: ('Can not read frame due to exception: Server unexpectedly closed connection').
+2024-03-04 14:32:04,788:INFO - An error occurred when detaching the link: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:32:04,829:INFO - Link state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:32:04,829:INFO - An error occurred when detaching the link: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:32:04,829:INFO - Link state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:32:04,829:INFO - Management link receiver state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:32:04,829:INFO - An error occurred when detaching the link: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:32:04,829:INFO - Link state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:32:04,829:INFO - Management link sender state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 14:32:04,829:INFO - An error occurred when ending the session: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:32:04,829:INFO - Session state changed: <SessionState.MAPPED: 3> -> <SessionState.UNMAPPED: 0>
+2024-03-04 14:32:04,829:INFO - An error occurred when closing the connection: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 14:32:04,829:INFO - Connection state changed: <ConnectionState.OPENED: 9> -> <ConnectionState.END: 13>
+2024-03-04 14:32:05,785:INFO - 'servicebus.pysdk-80516714' operation has exhausted retry. Last exception: ServiceBusConnectionError('Can not read frame due to exception: Server unexpectedly closed connection Error condition: amqp:socket-error.').
+Starting to listen for Service Bus messages...
+Traceback (most recent call last):
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/SSE-Project-II/api/service_bus_listener.py", line 40, in <module>
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/SSE-Project-II/api/service_bus_listener.py", line 26, in process_service_bus_messages
+    for msg in receiver:
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/SSE-Project-II/venv/lib/python3.10/site-packages/azure/servicebus/_transport/_pyamqp_transport.py", line 630, in iter_contextual_wrapper
+    message = receiver._inner_next(wait_time=max_wait_time)
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/SSE-Project-II/venv/lib/python3.10/site-packages/azure/servicebus/_servicebus_receiver.py", line 251, in _inner_next
+    return self._do_retryable_operation(self._iter_next, wait_time=wait_time)
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/SSE-Project-II/venv/lib/python3.10/site-packages/azure/servicebus/_base_handler.py", line 438, in _do_retryable_operation
+    raise last_exception from None
+azure.servicebus.exceptions.ServiceBusConnectionError: Can not read frame due to exception: Server unexpectedly closed connection Error condition: amqp:socket-error.
