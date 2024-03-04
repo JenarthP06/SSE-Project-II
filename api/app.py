@@ -7,17 +7,19 @@ load_dotenv()
 
 app = Flask(__name__)
 
-#url = os.environ.get("SUPABASE_URL")
-#key = os.environ.get("SUPABASE_KEY")
+# url = os.environ.get("SUPABASE_URL")
+# key = os.environ.get("SUPABASE_KEY")
+
 
 def create_supabase_client():
     url = os.environ.get("SUPABASE_URL")
     key = os.environ.get("SUPABASE_KEY")
     return create_client(url, key)
 
+
 supabase = create_supabase_client()
 
-#supabase = create_client(url, key)
+# supabase = create_client(url, key)
 
 
 @app.route('/')
