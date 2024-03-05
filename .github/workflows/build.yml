@@ -24,12 +24,12 @@ jobs:
       - name: Install Dependencies
         run: pip install -r requirements.txt
       - name: Start Flask app
-      run: |
-        nohup python app.py &
+        run: |
+          nohup python app.py &
 
       - name: Wait for app to start
-      run: sleep 10
+        run: sleep 10
 
       - name: Run tests
-      run: |
-        python app_test.py
+        run: |
+          python app_test.py
