@@ -1,6 +1,5 @@
 import unittest
 import requests
-import pytest
 
 
 class TestUserProfileAPI(unittest.TestCase):
