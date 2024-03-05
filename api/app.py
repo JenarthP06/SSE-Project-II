@@ -1,78 +1,97 @@
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template, jsonify, request, make_response
 import os
 from dotenv import load_dotenv
 from supabase import create_client
 from azure.eventhub import EventHubConsumerClient
+from flask_restful import Api, Resource
+import json
 
 load_dotenv()
 
 app = Flask(__name__)
-
-#url = os.environ.get("SUPABASE_URL")
-#key = os.environ.get("SUPABASE_KEY")
-
-def create_supabase_client():
-    url = os.environ.get("SUPABASE_URL")
-    key = os.environ.get("SUPABASE_KEY")
-    return create_client(url, key)
-
-supabase = create_supabase_client()
-
-#supabase = create_client(url, key)
+api = Api(app)
 
 
-@app.route('/')
-def index():
-    response = supabase.table('userprofile').select('*').execute()
-    if hasattr(response, 'data'):
-        data = response.data
-    else:
-        data = []
+supabase = create_client(os.environ.get("SUPABASE_URL"), os.environ.get("SUPABASE_KEY"))
 
-    displayed_data = [{'username': row['username'], 'favorite_films': row['favorite_films']} for row in data]
+class AddFavourite(Resource):
+    def post(self):
+        data = request.get_json()
+        username = data.get('username')
+        film = data.get('show')
 
-    return render_template('index.html', users=displayed_data)
+        if username and film:
+            # Assuming you have a 'favorites' table in Supabase
+            data, count = supabase.table('user-profile').select("id").eq("username", username).execute()
 
-#def add_favorite():
-    data = request.get_json()
+            # Extract the user ID from the response
+            userid = data[1] if isinstance(data, tuple) and len(data) == 2 else []
+            userid = userid[0]['id']
 
-    user_id = data.get('id')
-    username = data.get('username')
-    film = data.get('Favourites')
+            datacheck, count = supabase.table('Favourites').select('*').eq("movie", film).eq("userid", userid).execute()
+            print('ASDASDASDASDASD', datacheck)
+            datacheck = datacheck[1]
+            if datacheck != []:
+                error_response = make_response(jsonify({'message': 'favourite already exists'}), 400)
+                return error_response
 
 
-    if user_id and username and film:
-        # Assuming you have a 'favorites' table in Supabase
-        supabase.table('userprofile').upsert([{"id": user_id, "username": username, "Favourites":film}], on_conflict=['id'])
-        return jsonify({"message": "Favourite film added successfully"}), 201
-    else:
-        return jsonify({"error": "Missing id, username, or Favourites"}), 400
-    
-#def on_event(partition_context, event):
-    # Process the received event from Azure Event Hub
-    print("Received event from partition: {}".format(partition_context.partition_id))
-    print("Data: {}".format(event.body_as_str()))
+            supabase.table('Favourites').insert({"movie": film, "userid": userid}).execute()
+            response = make_response(jsonify({'message': 'success'}), 200)
+            return response
+        else:
+            error_response = make_response(jsonify({'message': 'error'}), 400)
+            return error_response
+        
+class DeleteFavourite(Resource):
+    def post(self):
+        data = request.get_json()
+        username = data.get('username')
+        film = data.get('show')
 
-    # Extract relevant data from the event
-    user_id = event.body_as_json().get('user_id')
-    film_title = event.body_as_json().get('film_title')
+        if username and film:
+            #supabase logic
+            data, count = supabase.table('user-profile').select("id").eq("username", username).execute()
 
-    if user_id and film_title:
-        # Store the data in Supabase
-        supabase.table('favorites').upsert([{"user_id": user_id, "film_title": film_title}], on_conflict=['user_id'])
+            # Extract the user ID from the response
+            userid = data[1] if isinstance(data, tuple) and len(data) == 2 else []
+            userid = userid[0]['id']
+            supabase.table('Favourites').delete().eq("movie", film).eq("userid", userid).execute()
 
-#consumer_client = EventHubConsumerClient.from_connection_string(
-    conn_str="your-event-hub-connection-string",
-    consumer_group="$Default",
-    eventhub_name="your-event-hub-name",
-#)
+            response = make_response(jsonify({'message': 'success'}), 200)
+            return response
+        
+        else:
+            error_response = make_response(jsonify({'message': 'error'}), 400)
+            return error_response
+        
 
-#with consumer_client:
-    consumer_client.receive(
-        on_event=on_event,
-        starting_position="-1",  # Start from the latest available event
-    )
 
+class Favourite(Resource):
+    def post(self):
+        data = request.get_json()
+        username = data.get('username')
+
+        if username:
+            #supabase to return all favourites for username]
+            data, count = supabase.table('user-profile').select("id").eq("username", username).execute()
+
+            # Extract the user ID from the response
+            userid = data[1] if isinstance(data, tuple) and len(data) == 2 else []
+            userid = userid[0]['id']
+            data, count = supabase.table('Favourites').select("movie").eq("userid", userid).execute()
+            response= jsonify(data)
+            return response
+        
+        else:
+            error_response = make_response(jsonify({'message': 'error'}), 400)
+            return error_response
+
+
+api.add_resource(AddFavourite, '/addfavourite')
+api.add_resource(DeleteFavourite, '/deletefavourite')
+api.add_resource(Favourite, '/displayfavourite')
 
 if __name__ == '__main__':
     app.run(debug=True)
+    
