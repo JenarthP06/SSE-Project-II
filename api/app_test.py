@@ -3,6 +3,7 @@ import http.client
 import json
 from app import app
 
+
 class TestAppEndpoints(unittest.TestCase):
     def setUp(self):
         # Set up a test client
@@ -48,6 +49,7 @@ class TestAppEndpoints(unittest.TestCase):
     def tearDown(self):
         # Clean up or reset anything necessary after each test
         pass
+
 
 if __name__ == '__main__':
     unittest.main()
