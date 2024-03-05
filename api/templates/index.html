@@ -52,23 +52,21 @@
     <script src="your-script-file.js"></script>
 </body> -->
 <body>
-    <h1>Users</h1>
+    <h1>User Profile</h1>
     <table>
         <tr>
-            <th>ID</th>
-            <th>Created At</th>
             <th>Username</th>
-            <th>Session Token</th>
+            <th>Favourites</th>
         </tr>
         {% for user in users %}
             <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.created_at }}</td>
                 <td>{{ user.username }}</td>
-                <td>{{ user.session_token or 'No token' }}</td>
+                <td>{{ user.favourites }}</td>
             </tr>
         {% endfor %}
     </table>
 </body>
+
+
 </html>
 
