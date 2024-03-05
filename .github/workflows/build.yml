@@ -32,4 +32,5 @@ jobs:
 
       - name: Run tests
         run: |
+          cd api
           python app_test.py
