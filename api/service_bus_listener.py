@@ -8,11 +8,15 @@ import json
 load_dotenv()
 
 
-supabase = create_client(os.environ.get("SUPABASE_URL"), os.environ.get("SUPABASE_KEY"))
+supabase = create_client(
+    os.environ.get("SUPABASE_URL"), os.environ.get("SUPABASE_KEY")
+    )
 
 
 def insert_user_data(username):
-    response = supabase.table('user-profile').insert({"username": username}).execute()
+    response = supabase.table('user-profile').insert(
+        {"username": username}
+        ).execute()
     if hasattr(response, 'error') and response.error:
         print(f"Error updating user {username}: {response.error}")
     else:

@@ -12,7 +12,9 @@ app = Flask(__name__)
 api = Api(app)
 
 
-supabase = create_client(os.environ.get("SUPABASE_URL"), os.environ.get("SUPABASE_KEY"))
+supabase = create_client(
+    os.environ.get("SUPABASE_URL"), os.environ.get("SUPABASE_KEY")
+    )
 
 
 class AddFavourite(Resource):
@@ -22,17 +24,27 @@ class AddFavourite(Resource):
         film = data.get('show')
         if username and film:
             # Assuming you have a 'favorites' table in Supabase
-            data, count = supabase.table('user-profile').select("id").eq("username", username).execute()
+            data, count = supabase.table(
+                'user-profile'
+                ).select("id").eq("username", username).execute()
             # Extract the user ID from the response
-            userid = data[1] if isinstance(data, tuple) and len(data) == 2 else []
+            userid = data[1] if isinstance(
+                data, tuple
+                ) and len(data) == 2 else []
             userid = userid[0]['id']
-            datacheck, count = supabase.table('Favourites').select('*').eq("movie", film).eq("userid", userid).execute()
+            datacheck, count = supabase.table(
+                'Favourites'
+                ).select('*').eq("movie", film).eq("userid", userid).execute()
             print('ASDASDASDASDASD', datacheck)
             datacheck = datacheck[1]
             if datacheck != []:
-                error_response = make_response(jsonify({'message': 'favourite already exists'}), 400)
+                error_response = make_response(
+                    jsonify({'message': 'favourite already exists'}), 400
+                    )
                 return error_response
-            supabase.table('Favourites').insert({"movie": film, "userid": userid}).execute()
+            supabase.table(
+                'Favourites'
+                ).insert({"movie": film, "userid": userid}).execute()
             response = make_response(jsonify({'message': 'success'}), 200)
             return response
         else:
@@ -46,12 +58,18 @@ class DeleteFavourite(Resource):
         username = data.get('username')
         film = data.get('show')
         if username and film:
-            #supabase logic
-            data, count = supabase.table('user-profile').select("id").eq("username", username).execute()
+            # supabase logic
+            data, count = supabase.table(
+                'user-profile'
+                ).select("id").eq("username", username).execute()
             # Extract the user ID from the response
-            userid = data[1] if isinstance(data, tuple) and len(data) == 2 else []
+            userid = data[1] if isinstance(
+                data, tuple
+                ) and len(data) == 2 else []
             userid = userid[0]['id']
-            supabase.table('Favourites').delete().eq("movie", film).eq("userid", userid).execute()
+            supabase.table(
+                'Favourites'
+                ).delete().eq("movie", film).eq("userid", userid).execute()
             response = make_response(jsonify({'message': 'success'}), 200)
             return response
         else:
@@ -64,14 +82,23 @@ class Favourite(Resource):
         data = request.get_json()
         username = data.get('username')
         if username:
-            data, count = supabase.table('user-profile').select("id").eq("username", username).execute()
-            userid = data[1] if isinstance(data, tuple) and len(data) == 2 else []
+            data, count = supabase.table(
+                'user-profile'
+                ).select("id").eq("username", username).execute()
+            userid = data[1] if isinstance(
+                data, tuple
+                ) and len(data) == 2 else []
             if userid == []:
-                error_response = make_response(jsonify({'message': 'user does not exist'}), 400)
+                error_response = make_response(jsonify(
+                    {'message': 'user does not exist'}
+                    ), 400)
                 return error_response
             userid = userid[0]['id']
-            data, count = supabase.table('Favourites').select("movie").eq("userid", userid).execute()
-            response= jsonify(data)
+            data, count = supabase.table(
+                'Favourites'
+                ).select("movie").eq("userid", userid
+                                     ).execute()
+            response = jsonify(data)
             return response
         else:
             error_response = make_response(jsonify({'message': 'error'}), 400)
