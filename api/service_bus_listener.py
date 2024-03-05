@@ -46,5 +46,4 @@ def process_service_bus_messages():
 
 
 if __name__ == '__main__':
-    print("Starting to listen for Service Bus messages...")
     process_service_bus_messages()
