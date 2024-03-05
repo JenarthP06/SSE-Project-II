@@ -78,6 +78,11 @@ class Favourite(Resource):
 
             # Extract the user ID from the response
             userid = data[1] if isinstance(data, tuple) and len(data) == 2 else []
+            
+            if userid == []:
+                error_response = make_response(jsonify({'message': 'user does not exist'}), 400)
+                return error_response
+            
             userid = userid[0]['id']
             data, count = supabase.table('Favourites').select("movie").eq("userid", userid).execute()
             response= jsonify(data)
