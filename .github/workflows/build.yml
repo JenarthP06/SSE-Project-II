@@ -26,6 +26,8 @@ jobs:
       - name: Start Flask app
         run: |
           cd api
+          export supabase_url=${{ secrets.SUPABASE_URL }}
+          export supabase_key=${{ secrets.SUPABASE_KEY }}
           nohup python app.py &
 
       - name: Wait for app to start
@@ -34,4 +36,6 @@ jobs:
       - name: Run tests
         run: |
           cd api
+          export supabase_url=${{ secrets.SUPABASE_URL }}
+          export supabase_key=${{ secrets.SUPABASE_KEY }}
           python app_test.py
