@@ -1,39 +1,54 @@
 import unittest
-import requests
-import pytest
+import http.client
+import json
+from app import app
 
 
-class TestUserProfileAPI(unittest.TestCase):
-    base_url = "http://127.0.0.1:5000/user"
+class TestAppEndpoints(unittest.TestCase):
+    def setUp(self):
+        # Set up a test client
+        self.app = app.test_client()
 
-    def test_create_user_profile(self):
-        # Test creating a new user profile
-        data = {"username": "test_user", "email": "test@example.com"}
-        response = requests.post(f"{self.base_url}", json=data)
+    def send_post_request(self, endpoint, data):
+        connection = http.client.HTTPConnection('127.0.0.1', 5000)
+        headers = {'Content-type': 'application/json'}
+        json_data = json.dumps(data)
+        connection.request('POST', endpoint, json_data, headers)
+        response = connection.getresponse()
+        return response
 
-        self.assertEqual(response.status_code, 201)
-        self.assertIn("user_id", response.json())
-        user_id = response.json()["user_id"]
+    def test_add_favourite(self):
+        # Test the /addfavourite endpoint
+        data = {"username": "test_user", "show": "test_show"}
+        response = self.send_post_request('/addfavourite', data)
 
-        # Test retrieving the created user profile
-        response = requests.get(f"{self.base_url}/{user_id}")
+        # Check if the response is successful
+        self.assertEqual(response.status, 200)
+        response_data = json.loads(response.read().decode())
+        self.assertEqual(response_data['message'], 'success')
 
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json()["username"], data["username"])
-        self.assertEqual(response.json()["email"], data["email"])
+    def test_delete_favourite(self):
+        # Test the /deletefavourite endpoint
+        data = {"username": "test_user", "show": "test_show"}
+        response = self.send_post_request('/deletefavourite', data)
 
-    def test_create_user_profile_invalid_input(self):
-        # Test creating a new user profile with invalid input
-        data = {"invalid_field": "test_user"}
-        response = requests.post(f"{self.base_url}", json=data)
+        # Check if the response is successful
+        self.assertEqual(response.status, 200)
+        response_data = json.loads(response.read().decode())
+        self.assertEqual(response_data['message'], 'success')
 
-        self.assertEqual(response.status_code, 400)
+    def test_display_favourite(self):
+        # Test the /displayfavourite endpoint
+        data = {"username": "test_user"}
+        response = self.send_post_request('/displayfavourite', data)
 
-    def test_get_nonexistent_user_profile(self):
-        # Test retrieving a nonexistent user profile
-        response = requests.get(f"{self.base_url}/nonexistent_user")
+        # Check if the response is successful
+        self.assertEqual(response.status, 200)
+        # Add more specific assertions based on your expected response
 
-        self.assertEqual(response.status_code, 404)
+    def tearDown(self):
+        # Clean up or reset anything necessary after each test
+        pass
 
 
 if __name__ == '__main__':
