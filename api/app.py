@@ -106,9 +106,42 @@ class Favourite(Resource):
             return error_response
 
 
+class FavouriteExists(Resource):
+    def get(self):
+        username = request.args.get('username')
+        show = request.args.get('show')
+        if username and show:
+            # supabase logic
+            data, count = supabase.table(
+                'user-profile'
+                ).select("id").eq("username", username).execute()
+            # Extract the user ID from the response
+            userid = data[1] if isinstance(
+                data, tuple
+                ) and len(data) == 2 else []
+            userid = userid[0]['id']
+            exists, count = supabase.table(
+                'Favourites'
+                ).select('*').eq("movie", show).eq("userid", userid).execute()
+            exists = exists[1] if isinstance(
+                exists, tuple
+                ) and len(exists) == 2 else []
+            if exists != []:
+                response = make_response(jsonify({'message': 'success'}), 200)
+                return response
+            else:
+                response = make_response(jsonify({'message': 'show is not favourited'}), 401)
+                return response
+        else:
+            error_response = make_response(jsonify({'message': 'error'}), 400)
+            return error_response
+        
+
+
 api.add_resource(AddFavourite, '/addfavourite')
 api.add_resource(DeleteFavourite, '/deletefavourite')
 api.add_resource(Favourite, '/displayfavourite')
+api.add_resource(FavouriteExists, '/checkfavourite')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
