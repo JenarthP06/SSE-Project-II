@@ -149,7 +149,9 @@ class Top5Favourites(Resource):
         movies = [entry['movie'] for entry in data]
         movie_counts = Counter(movies)
         top_5_movies = movie_counts.most_common(5)
-        response_data = [{'movie': movie, 'count': count} for movie, count in top_5_movies]
+        response_data = [
+            {'movie': movie, 'count': count} for movie, count in top_5_movies
+            ]
         response = jsonify(response_data)
         return response
 
