@@ -2224,3 +2224,32 @@ Traceback (most recent call last):
   File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/SSE-Project-II/venv/lib/python3.10/site-packages/azure/servicebus/_base_handler.py", line 438, in _do_retryable_operation
     raise last_exception from None
 azure.servicebus.exceptions.ServiceBusConnectionError: Can not read frame due to exception: Server unexpectedly closed connection Error condition: amqp:socket-error.
+2024-03-04 15:07:53,373:INFO - AMQP error occurred: (AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')), condition: (<ErrorCondition.SocketError: b'amqp:socket-error'>), description: ('Can not read frame due to exception: Server unexpectedly closed connection').
+2024-03-04 15:07:53,401:INFO - An error occurred when detaching the link: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 15:07:53,401:INFO - Link state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 15:07:53,401:INFO - An error occurred when detaching the link: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 15:07:53,401:INFO - Link state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 15:07:53,401:INFO - Management link receiver state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 15:07:53,401:INFO - An error occurred when detaching the link: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 15:07:53,401:INFO - Link state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 15:07:53,401:INFO - Management link sender state changed: <LinkState.ATTACHED: 3> -> <LinkState.DETACHED: 0>
+2024-03-04 15:07:53,401:INFO - An error occurred when ending the session: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 15:07:53,401:INFO - Session state changed: <SessionState.MAPPED: 3> -> <SessionState.UNMAPPED: 0>
+2024-03-04 15:07:53,401:INFO - An error occurred when closing the connection: AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Can not read frame due to exception: Server unexpectedly closed connection')
+2024-03-04 15:07:53,401:INFO - Connection state changed: <ConnectionState.OPENED: 9> -> <ConnectionState.END: 13>
+2024-03-04 15:08:00,087:INFO - 'servicebus.pysdk-e5585fcc' has an exception (ServiceBusConnectionError('Can not read frame due to exception: Server unexpectedly closed connection Error condition: amqp:socket-error.')). Retrying...
+2024-03-04 15:08:00,092:INFO - Transport connection failed: OSError('failed to resolve broker hostname')
+2024-03-04 15:08:00,093:INFO - AMQP error occurred: (AMQPConnectionError('Error condition: ErrorCondition.SocketError\n Error Description: Failed to initiate the connection due to exception: failed to resolve broker hostname')), condition: (<ErrorCondition.SocketError: b'amqp:socket-error'>), description: ('Failed to initiate the connection due to exception: failed to resolve broker hostname').
+2024-03-04 15:08:00,093:INFO - 'servicebus.pysdk-e5585fcc' operation has exhausted retry. Last exception: ServiceBusConnectionError('Failed to initiate the connection due to exception: failed to resolve broker hostname Error condition: amqp:socket-error.').
+Starting to listen for Service Bus messages...
+Traceback (most recent call last):
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/SSE-Project-II/api/service_bus_listener.py", line 39, in <module>
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/SSE-Project-II/api/service_bus_listener.py", line 26, in process_service_bus_messages
+    message_body_bytes = b''.join(b for b in msg.body)
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/SSE-Project-II/venv/lib/python3.10/site-packages/azure/servicebus/_transport/_pyamqp_transport.py", line 630, in iter_contextual_wrapper
+    message = receiver._inner_next(wait_time=max_wait_time)
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/SSE-Project-II/venv/lib/python3.10/site-packages/azure/servicebus/_servicebus_receiver.py", line 251, in _inner_next
+    return self._do_retryable_operation(self._iter_next, wait_time=wait_time)
+  File "/Users/raymondguo/Desktop/Imperial/Software_Systems_Engineering/TeamProjectCode/SSE-Project-II/venv/lib/python3.10/site-packages/azure/servicebus/_base_handler.py", line 438, in _do_retryable_operation
+    raise last_exception from None
+azure.servicebus.exceptions.ServiceBusConnectionError: Failed to initiate the connection due to exception: failed to resolve broker hostname Error condition: amqp:socket-error.

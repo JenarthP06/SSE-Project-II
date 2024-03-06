@@ -10,6 +10,7 @@ app = Flask(__name__)
 
 supabase = create_client(os.environ.get("SUPABASE_URL"), os.environ.get("SUPABASE_KEY"))
 
+
 @app.route('/')
 def index():
     response = supabase.table('user-profile').select('*').execute()
@@ -18,4 +19,3 @@ def index():
 
 if __name__ == '__main__':
     app.run(debug=True)
-    
