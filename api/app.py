@@ -130,18 +130,20 @@ class FavouriteExists(Resource):
                 response = make_response(jsonify({'message': 'success'}), 200)
                 return response
             else:
-                response = make_response(jsonify({'message': 'show is not favourited'}), 401)
+                response = make_response(
+                    jsonify({'message': 'show is not favourited'}), 401
+                    )
                 return response
         else:
             error_response = make_response(jsonify({'message': 'error'}), 400)
             return error_response
-        
 
 
 api.add_resource(AddFavourite, '/addfavourite')
 api.add_resource(DeleteFavourite, '/deletefavourite')
 api.add_resource(Favourite, '/displayfavourite')
 api.add_resource(FavouriteExists, '/checkfavourite')
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

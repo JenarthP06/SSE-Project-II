@@ -42,7 +42,7 @@ def process_service_bus_messages():
                     # Can add other event types to listen for
                     # e.g. loginmicroservice sends eventType
                     # = 'UserDeleted', then delete from
-                    # this database using extra if statement 
+                    # this database using extra if statement
                     if eventType == "UserRegistered":
                         insert_user_data(username)
                         receiver.complete_message(msg)

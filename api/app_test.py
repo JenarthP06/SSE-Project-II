@@ -27,6 +27,18 @@ class TestAppEndpoints(unittest.TestCase):
         response_data = response.json()
         self.assertEqual(response_data['message'], 'success')
 
+    def test_display_favourite(self):
+        params = {"username": "test_user"}
+        response = self.send_get_request('/displayfavourite', params=params)
+
+        self.assertEqual(response.status_code, 200)
+
+    def test_check_favourite(self):
+        params = {"username": "test_user", "show": "test_show"}
+        response = self.send_get_request('/displayfavourite', params=params)
+
+        self.assertEqual(response.status_code, 200)
+
     def test_delete_favourite(self):
         data = {"username": "test_user", "show": "test_show"}
         response = self.send_post_request('/deletefavourite', data)
@@ -34,12 +46,6 @@ class TestAppEndpoints(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         response_data = response.json()
         self.assertEqual(response_data['message'], 'success')
-
-    def test_display_favourite(self):
-        params = {"username": "test_user"}
-        response = self.send_get_request('/displayfavourite', params=params)
-
-        self.assertEqual(response.status_code, 200)
 
     def tearDown(self):
         pass
