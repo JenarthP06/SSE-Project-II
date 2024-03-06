@@ -1,7 +1,7 @@
 import unittest
-import json
 import requests
 from app import app
+
 
 class TestAppEndpoints(unittest.TestCase):
     def setUp(self):
@@ -12,7 +12,7 @@ class TestAppEndpoints(unittest.TestCase):
         headers = {'Content-type': 'application/json'}
         response = requests.post(url, json=data, headers=headers)
         return response
-    
+
     def send_get_request(self, endpoint, params=None):
         url = f'http://127.0.0.1:5000{endpoint}'
         headers = {'Content-type': 'application/json'}
@@ -43,6 +43,7 @@ class TestAppEndpoints(unittest.TestCase):
 
     def tearDown(self):
         pass
+
 
 if __name__ == '__main__':
     unittest.main()
