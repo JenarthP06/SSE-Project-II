@@ -3,12 +3,14 @@ import os
 from dotenv import load_dotenv
 from supabase import create_client
 from flask_restful import Api, Resource
+from flask_cors import CORS
 
 
 load_dotenv()
 
 
 app = Flask(__name__)
+CORS(app)
 api = Api(app)
 
 
@@ -78,9 +80,8 @@ class DeleteFavourite(Resource):
 
 
 class Favourite(Resource):
-    def post(self):
-        data = request.get_json()
-        username = data.get('username')
+    def get(self):
+        username = request.args.get('username')
         if username:
             data, count = supabase.table(
                 'user-profile'
