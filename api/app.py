@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request, make_response
 import os
 from dotenv import load_dotenv
 from supabase import create_client
+from collections import Counter
 from flask_restful import Api, Resource
 from flask_cors import CORS
 
@@ -139,10 +140,25 @@ class FavouriteExists(Resource):
             return error_response
 
 
+class Top5Favourites(Resource):
+    def get(self):
+        data, count = supabase.table('Favourites') \
+            .select('movie') \
+            .execute()
+        data = data[1]
+        movies = [entry['movie'] for entry in data]
+        movie_counts = Counter(movies)
+        top_5_movies = movie_counts.most_common(5)
+        response_data = [{'movie': movie, 'count': count} for movie, count in top_5_movies]
+        response = jsonify(response_data)
+        return response
+
+
 api.add_resource(AddFavourite, '/addfavourite')
 api.add_resource(DeleteFavourite, '/deletefavourite')
 api.add_resource(Favourite, '/displayfavourite')
 api.add_resource(FavouriteExists, '/checkfavourite')
+api.add_resource(Top5Favourites, '/topfavourite')
 
 
 if __name__ == '__main__':
