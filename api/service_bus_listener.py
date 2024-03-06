@@ -37,9 +37,15 @@ def process_service_bus_messages():
                     message_body_bytes = b''.join(b for b in msg.body)
                     message_body_str = message_body_bytes.decode('utf-8')
                     message_body = json.loads(message_body_str)
+                    eventType = message_body['eventType']
                     username = message_body['username']
-                    insert_user_data(username)
-                    receiver.complete_message(msg)
+                    # Can add other event types to listen for
+                    # e.g. loginmicroservice sends eventType
+                    # = 'UserDeleted', then delete from
+                    # this database using extra if statement 
+                    if eventType == "UserRegistered":
+                        insert_user_data(username)
+                        receiver.complete_message(msg)
                 except Exception as e:
                     print(f"Error processing message: {e}")
                     receiver.dead_letter_message(msg)
