@@ -83,7 +83,11 @@ class DeleteFavourite(Resource):
 class Favourite(Resource):
     def get(self):
         username = request.args.get('username')
-        if username:
+        if username == None:
+            data = ['data', []]
+            response = data
+            return response
+        elif username:
             data, count = supabase.table(
                 'user-profile'
                 ).select("id").eq("username", username).execute()
@@ -100,6 +104,7 @@ class Favourite(Resource):
                 'Favourites'
                 ).select("movie").eq("userid", userid
                                      ).execute()
+            print(data)
             response = jsonify(data)
             return response
         else:
@@ -132,7 +137,7 @@ class FavouriteExists(Resource):
                 return response
             else:
                 response = make_response(
-                    jsonify({'message': 'show is not favourited'}), 401
+                    jsonify({'message': 'show is not favourited'}), 204
                     )
                 return response
         else:
