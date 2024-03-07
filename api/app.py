@@ -25,7 +25,8 @@ class AddFavourite(Resource):
         data = request.get_json()
         username = data.get('username')
         film = data.get('show')
-        if username and film:
+        country = data.get('country')
+        if username and film and country:
             # Assuming you have a 'favorites' table in Supabase
             data, count = supabase.table(
                 'user-profile'
@@ -37,7 +38,7 @@ class AddFavourite(Resource):
             userid = userid[0]['id']
             datacheck, count = supabase.table(
                 'Favourites'
-                ).select('*').eq("movie", film).eq("userid", userid).execute()
+                ).select('*').eq("movie", film).eq("userid", userid).eq("country", country).execute()
             print('ASDASDASDASDASD', datacheck)
             datacheck = datacheck[1]
             if datacheck != []:
@@ -45,9 +46,10 @@ class AddFavourite(Resource):
                     jsonify({'message': 'favourite already exists'}), 400
                     )
                 return error_response
-            supabase.table(
-                'Favourites'
-                ).insert({"movie": film, "userid": userid}).execute()
+            else:
+                supabase.table(
+                    'Favourites'
+                    ).insert({"movie": film, "userid": userid, "country": country}).execute()
             response = make_response(jsonify({'message': 'success'}), 200)
             return response
         else:
@@ -60,7 +62,8 @@ class DeleteFavourite(Resource):
         data = request.get_json()
         username = data.get('username')
         film = data.get('show')
-        if username and film:
+        country = data.get('country')
+        if username and film and country:
             # supabase logic
             data, count = supabase.table(
                 'user-profile'
@@ -72,7 +75,7 @@ class DeleteFavourite(Resource):
             userid = userid[0]['id']
             supabase.table(
                 'Favourites'
-                ).delete().eq("movie", film).eq("userid", userid).execute()
+                ).delete().eq("movie", film).eq("userid", userid).eq("country", country).execute()
             response = make_response(jsonify({'message': 'success'}), 200)
             return response
         else:
@@ -102,7 +105,7 @@ class Favourite(Resource):
             userid = userid[0]['id']
             data, count = supabase.table(
                 'Favourites'
-                ).select("movie").eq("userid", userid
+                ).select("movie", "country").eq("userid", userid
                                      ).execute()
             print(data)
             response = jsonify(data)
@@ -148,15 +151,21 @@ class FavouriteExists(Resource):
 class Top5Favourites(Resource):
     def get(self):
         data, count = supabase.table('Favourites') \
-            .select('movie') \
+            .select('movie', 'country') \
             .execute()
+
         data = data[1]
+
         movies = [entry['movie'] for entry in data]
+        countries = [entry['country'] for entry in data]
+
         movie_counts = Counter(movies)
         top_5_movies = movie_counts.most_common(5)
+
         response_data = [
-            {'movie': movie, 'count': count} for movie, count in top_5_movies
-            ]
+            {'movie': movie, 'count': count, 'country': countries[movies.index(movie)]} for movie, count in top_5_movies
+        ]
+
         response = jsonify(response_data)
         return response
 

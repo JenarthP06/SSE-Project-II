@@ -20,7 +20,7 @@ class TestAppEndpoints(unittest.TestCase):
         return response
 
     def test_add_favourite(self):
-        data = {"username": "test_user", "show": "test_show"}
+        data = {"username": "test_user", "show": "test_show", "country": "test_country"}
         response = self.send_post_request('/addfavourite', data)
 
         self.assertEqual(response.status_code, 200)
@@ -33,19 +33,30 @@ class TestAppEndpoints(unittest.TestCase):
 
         self.assertEqual(response.status_code, 200)
 
-    def test_check_favourite(self):
+    def test_check_favourited(self):
         params = {"username": "test_user", "show": "test_show"}
-        response = self.send_get_request('/displayfavourite', params=params)
+        response = self.send_get_request('/checkfavourite', params=params)
 
         self.assertEqual(response.status_code, 200)
 
     def test_delete_favourite(self):
-        data = {"username": "test_user", "show": "test_show"}
+        data = {"username": "test_user", "show": "test_show", "country": "test_country"}
         response = self.send_post_request('/deletefavourite', data)
 
         self.assertEqual(response.status_code, 200)
         response_data = response.json()
         self.assertEqual(response_data['message'], 'success')
+        
+    def test_check_favourited(self):
+        params = {"username": "test_user", "show": "test_show"}
+        response = self.send_get_request('/checkfavourite', params=params)
+
+        self.assertEqual(response.status_code, 204)
+        
+    def test_top_favourite(self):
+        response = self.send_get_request('/topfavourite', params=None)
+
+        self.assertEqual(response.status_code, 200)
 
     def tearDown(self):
         pass
