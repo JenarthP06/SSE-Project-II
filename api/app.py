@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, make_response, render_template
+from flask import Flask, jsonify, request, make_response
 import os
 from dotenv import load_dotenv
 from supabase import create_client
@@ -17,14 +17,15 @@ supabase = create_client(
     )
 
 
-@app.route('/')
-def index():
-    response = supabase.table('user-profile').select('*').execute()
-    users = response.data if response.data else []
-    return render_template('index.html', users=users)
+# @app.route('/')
+# def index():
+#     response = supabase.table('user-profile').select('*').execute()
+#     users = response.data if response.data else []
+#     return render_template('index.html', users=users)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# if __name__ == '__main__':
+#     app.run(debug=True)
+
 class AddFavourite(Resource):
     def post(self):
         data = request.get_json()
