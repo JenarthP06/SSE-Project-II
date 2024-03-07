@@ -18,6 +18,9 @@ jobs:
   run-tests:
     needs: python-formatting
     runs-on: ubuntu-latest
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3

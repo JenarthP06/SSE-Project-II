@@ -1,53 +1,64 @@
 import unittest
-import http.client
-import json
+import requests
 from app import app
 
 
 class TestAppEndpoints(unittest.TestCase):
     def setUp(self):
-        # Set up a test client
         self.app = app.test_client()
 
     def send_post_request(self, endpoint, data):
-        connection = http.client.HTTPConnection('127.0.0.1', 5000)
+        url = f'http://127.0.0.1:5000{endpoint}'
         headers = {'Content-type': 'application/json'}
-        json_data = json.dumps(data)
-        connection.request('POST', endpoint, json_data, headers)
-        response = connection.getresponse()
+        response = requests.post(url, json=data, headers=headers)
+        return response
+
+    def send_get_request(self, endpoint, params=None):
+        url = f'http://127.0.0.1:5000{endpoint}'
+        headers = {'Content-type': 'application/json'}
+        response = requests.get(url, params=params, headers=headers)
         return response
 
     def test_add_favourite(self):
-        # Test the /addfavourite endpoint
-        data = {"username": "test_user", "show": "test_show"}
+        data = {"username": "test_user", "show": "test_show", "country": "test_country"}
         response = self.send_post_request('/addfavourite', data)
 
-        # Check if the response is successful
-        self.assertEqual(response.status, 200)
-        response_data = json.loads(response.read().decode())
-        self.assertEqual(response_data['message'], 'success')
-
-    def test_delete_favourite(self):
-        # Test the /deletefavourite endpoint
-        data = {"username": "test_user", "show": "test_show"}
-        response = self.send_post_request('/deletefavourite', data)
-
-        # Check if the response is successful
-        self.assertEqual(response.status, 200)
-        response_data = json.loads(response.read().decode())
+        self.assertEqual(response.status_code, 200)
+        response_data = response.json()
         self.assertEqual(response_data['message'], 'success')
 
     def test_display_favourite(self):
-        # Test the /displayfavourite endpoint
-        data = {"username": "test_user"}
-        response = self.send_post_request('/displayfavourite', data)
+        params = {"username": "test_user"}
+        response = self.send_get_request('/displayfavourite', params=params)
 
-        # Check if the response is successful
-        self.assertEqual(response.status, 200)
-        # Add more specific assertions based on your expected response
+        self.assertEqual(response.status_code, 200)
+
+    def test_check_favourited(self):
+        params = {"username": "test_user", "show": "test_show"}
+        response = self.send_get_request('/checkfavourite', params=params)
+
+        self.assertEqual(response.status_code, 200)
+
+    def test_delete_favourite(self):
+        data = {"username": "test_user", "show": "test_show", "country": "test_country"}
+        response = self.send_post_request('/deletefavourite', data)
+
+        self.assertEqual(response.status_code, 200)
+        response_data = response.json()
+        self.assertEqual(response_data['message'], 'success')
+        
+    def test_check_favourited(self):
+        params = {"username": "test_user", "show": "test_show"}
+        response = self.send_get_request('/checkfavourite', params=params)
+
+        self.assertEqual(response.status_code, 204)
+        
+    def test_top_favourite(self):
+        response = self.send_get_request('/topfavourite', params=None)
+
+        self.assertEqual(response.status_code, 200)
 
     def tearDown(self):
-        # Clean up or reset anything necessary after each test
         pass
 
 
