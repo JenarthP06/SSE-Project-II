@@ -68,11 +68,9 @@ class DeleteFavourite(Resource):
         username = data.get('username')
         film = data.get('show')
         if username and film:
-            # supabase logic
             data, count = supabase.table(
                 'user-profile'
             ).select("id").eq("username", username).execute()
-            # Extract the user ID from the response
             userid = data[1] if isinstance(
                 data, tuple
             ) and len(data) == 2 else []
@@ -81,7 +79,6 @@ class DeleteFavourite(Resource):
                 .delete() \
                 .eq("movie", film) \
                 .eq("userid", userid) \
-                .eq("country", country) \
                 .execute()
             response = make_response(jsonify({'message': 'success'}), 200)
             return response
