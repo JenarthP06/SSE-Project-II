@@ -4,7 +4,7 @@ WORKDIR /api
 
 COPY . .
 
-# COPY .env /api
+COPY .env /api
 
 RUN pip install --no-cache-dir -r requirements.txt
 
