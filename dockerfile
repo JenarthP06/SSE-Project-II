@@ -1,8 +1,10 @@
-FROM python:3.8-slim
+FROM python:3.9
 
-WORKDIR /usr/src/app
+WORKDIR /api
 
 COPY . .
+
+COPY .env /api
 
 RUN pip install --no-cache-dir -r requirements.txt
 
@@ -11,8 +13,4 @@ RUN apt-get update && apt-get install -y supervisor
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 EXPOSE 5000
-
-ENV FLASK_APP=api/app.py
-# ENV FLASK_ENV=development
-
-CMD ["/usr/bin/supervisord", "flask", "run", "--host=0.0.0.0", "--port=5000"]
+CMD ["/usr/bin/supervisord"]
