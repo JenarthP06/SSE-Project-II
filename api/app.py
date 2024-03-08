@@ -67,8 +67,7 @@ class DeleteFavourite(Resource):
         data = request.get_json()
         username = data.get('username')
         film = data.get('show')
-        country = data.get('country')
-        if username and film and country:
+        if username and film:
             # supabase logic
             data, count = supabase.table(
                 'user-profile'
