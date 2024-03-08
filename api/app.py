@@ -128,11 +128,9 @@ class FavouriteExists(Resource):
         username = request.args.get('username')
         show = request.args.get('show')
         if username and show:
-            # supabase logic
             data, count = supabase.table(
                 'user-profile'
             ).select("id").eq("username", username).execute()
-            # Extract the user ID from the response
             userid = data[1] if isinstance(
                 data, tuple
             ) and len(data) == 2 else []
